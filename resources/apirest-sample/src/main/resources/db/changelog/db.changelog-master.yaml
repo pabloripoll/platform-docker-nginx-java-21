@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: pabloripoll
+      changes:
+        - sqlFile:
+            path: db/migrations/V20251026031708__create_users_table.sql

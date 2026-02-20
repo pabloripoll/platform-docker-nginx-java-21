@@ -1,0 +1,2 @@
+* * * * * cd /var/www && [program:command] >> /dev/stdout 2>&1
+

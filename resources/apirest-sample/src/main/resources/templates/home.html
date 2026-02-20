@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Java Springboot 3 - HTML</title>
+    <link rel="icon" type="image/x-icon" href="/files/images/spring-3.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Java Springboot 3 - HTML">
+    <style>
+    :root {
+        color-scheme: light dark;
+        --light-bg: ghostwhite;
+        --light-color: darkslategray;
+        --light-code: rgb(119, 188, 31);
+        --dark-bg: rgb(30, 30, 30);
+        --dark-color: ghostwhite;
+        --dark-code: rgb(119, 188, 31);
+    }
+    * {
+        background-color: light-dark(var(--light-bg), var(--dark-bg));
+        color: light-dark(var(--light-color), var(--dark-color));
+    }
+    body {
+        display: inline-block;
+        margin: 0px 5%;
+        text-align: center;
+        width: 90%;
+    }
+    span {
+        color: light-dark(var(--light-code), var(--dark-code));
+    }
+    .logo-wrapper {
+        width: 550px; height: auto; margin: 40px auto 10px auto;
+    }
+    .logo {
+        width: 250px; height: auto; float: left;
+    }
+    .logo-wrapper .logo:first-child {
+        margin-right: 25px;
+    }
+    .spring-logo img {
+        width:230px;
+    }
+    .springboot-logo img {
+        width:250px;
+    }
+    </style>
+</head>
+<body>
+    <div class="logo-wrapper">
+        <div class="logo spring-logo">
+            <img src="/files/images/spring.svg" alt="Spring Logo">
+        </div>
+        <div class="logo springboot-logo">
+            <img src="/files/images/spring-boot.svg" alt="SpringBoot Logo">
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+    <header>
+        <h1>PLATFORM <span>REST API</span> - Java 21 <span>Spring / SpringBoot 3</span></h1>
+    </header>
+    <p>Container is running succesfully - Plain <span>HTML5</span> is serverd as Welcome page at <code>/home</code></p>
+    <p>For API requests check: <code>GET /api/status</code> endpoint.</p>
+    <p>Testing API database example: <code>GET /api/v1/users</code> endpoint.</p>
+    <p th:if="${db.status} == 'ok'">
+        Database container status: <span>Connected!</span> - <span style="color:yellow;" th:text="${db.message}"></span>
+    </p>
+</body>
+</html>

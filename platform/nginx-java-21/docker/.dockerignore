@@ -1,0 +1,9 @@
+.git
+.gitignore
+.vscode
+compose*.yml
+Dockerfile
+node_modules
+vendor
+config.sample
+vault
