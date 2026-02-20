@@ -140,10 +140,9 @@ APIREST_CAAS_SWAP=512M                    # <- container's RAM swap space in sto
 
 The result of the container name will be `abbr-mp-apirest-dev`. Benefits:
 
-- You can have more than one container
+- You can have more than one container, with diferent platform environment variable values. E.g.: working on different versions. It is not the same as Docker Composer Replica: https://docs.docker.com/reference/compose-file/deploy/#replicas
 
-
-- The result of the container image will be `abbr-mp-apirest-dev:alpine3.23-nginx-28-java-21`
+- The result of the container image will be `abbr-mp-apirest-dev:alpine3.23-nginx-28-java-21`. This is intenteded for working different local development stacks or services with different REST APIs.
 <br>
 
 ## Managing the `apirest` Directory: Submodule vs Detached Repository

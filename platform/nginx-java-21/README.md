@@ -108,7 +108,7 @@ It is important to take into account remote server characteristics, so try to se
 - https://docs.docker.com/reference/cli/docker/container/run/#pid
 - Checkout the local machine resources: `$ sudo docker info`
 
-Set up your required runtime constraints on resources
+Set up your required runtime constraints on resources - **Set them up only when remote server has less than local machine** -
 
 - https://docs.docker.com/engine/containers/run/#runtime-constraints-on-resources
 
