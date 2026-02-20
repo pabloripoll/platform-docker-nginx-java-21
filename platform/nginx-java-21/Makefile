@@ -21,7 +21,7 @@ endif
 
 include ../../.env
 
-DOCKER_PLTF="NGINX - JAVA 21"
+DOCKER_PLTF="NGINX + JAVA 21"
 DOCKER_LEAD=$(PROJECT_LEAD)
 DOCKER_CNET=$(PROJECT_CNET)
 DOCKER_HOST=$(PROJECT_HOST)
@@ -96,13 +96,13 @@ else
 	COMPOSE_PROJECT_GROUP=\"$(DOCKER_GROUP)\"" > ./docker/.env; \
 	chmod +x ./docker/config/ownerships.sh
 	./docker/config/ownerships.sh $(DOCKER_USER) $(DOCKER_GROUP)
-	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - $(DOCKER_PLTF) "${C_YEL}"docker-compose.yml"${C_END}" .env file "${C_GRN}"has been set."${C_END};
-	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Container name: "${C_GRN}$(DOCKER_CONTAINER)${C_END}
-	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Container image: "${C_GRN}$(DOCKER_CONTAINER):$(DOCKER_IMGK)${C_END}
-	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Max. CPUs: "${C_GRN}$(DOCKER_CPUS)${C_END}
-	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Max. memory usage: "${C_GRN}$(DOCKER_MEM)${C_END}" - Swap: "${C_GRN}$(DOCKER_SWAP)${C_END}
-	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Localhost: http://127.0.0.1:"${C_GRN}"$(DOCKER_PORT)"${C_END};
-	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Hostname: http://$(word 1,$(shell hostname -I)):"${C_GRN}"$(DOCKER_PORT)"${C_END};
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST "${C_YEL}$(DOCKER_PLTF)${C_END}" - "${C_YEL}"docker-compose.yml"${C_END}" .env file "${C_GRN}"has been set."${C_END};
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST "${C_YEL}$(DOCKER_PLTF)${C_END}" - Container name: "${C_GRN}$(DOCKER_CONTAINER)${C_END}
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST "${C_YEL}$(DOCKER_PLTF)${C_END}" - Container image: "${C_GRN}$(DOCKER_CONTAINER):$(DOCKER_IMGK)${C_END}
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST "${C_YEL}$(DOCKER_PLTF)${C_END}" - Max. CPUs: "${C_GRN}$(DOCKER_CPUS)${C_END}
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST "${C_YEL}$(DOCKER_PLTF)${C_END}" - Max. memory: "${C_GRN}$(DOCKER_MEM)${C_END}" - Swap: "${C_GRN}$(DOCKER_SWAP)${C_END}
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST "${C_YEL}$(DOCKER_PLTF)${C_END}" - Localhost: http://127.0.0.1:"${C_GRN}"$(DOCKER_PORT)"${C_END};
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST "${C_YEL}$(DOCKER_PLTF)${C_END}" - Hostname: http://$(word 1,$(shell hostname -I)):"${C_GRN}"$(DOCKER_PORT)"${C_END};
 endif
 
 # -------------------------------------------------------------------------------------------------
@@ -115,7 +115,9 @@ info: ## shows container information
 	printf ${C_YEL}"Container ID.: "${C_END}; $(DOCKER) ps -aqf "name=^$(DOCKER_CONTAINER)$$"; printf "%s";
 	echo ${C_YEL}"Name.........: "${C_END}$(DOCKER_CONTAINER);
 	echo ${C_YEL}"Image........: "${C_END}"$(DOCKER_CONTAINER):$(DOCKER_IMGK)";
-	echo ${C_YEL}"Memory.......: "${C_END}"$(DOCKER_MEM)";
+	echo ${C_YEL}"CPUs.........: "${C_END}"$(DOCKER_CPUS)";
+	echo ${C_YEL}"RAM..........: "${C_END}"$(DOCKER_MEM)";
+	echo ${C_YEL}"SWAP.........: "${C_END}"$(DOCKER_SWAP)";
 	echo ${C_YEL}"Host.........: "${C_END}"$(DOCKER_HOST):$(DOCKER_PORT)";
 	echo ${C_YEL}"Hostname.....: "${C_END}"$(word 1,$(shell hostname -I)):"$(DOCKER_PORT);
 	printf ${C_YEL}"Docker.Host..: "${C_END};$(DOCKER) inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(DOCKER_CONTAINER);
