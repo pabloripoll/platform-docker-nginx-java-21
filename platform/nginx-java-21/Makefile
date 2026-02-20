@@ -29,6 +29,7 @@ DOCKER_IMGK=$(APIREST_IMGK)
 DOCKER_CAAS=$(APIREST_CAAS)
 DOCKER_PORT=$(APIREST_PORT)
 DOCKER_BIND=$(APIREST_BIND)
+DOCKER_CPUS=$(APIREST_CAAS_CPUS)
 DOCKER_MEM=$(APIREST_CAAS_MEM)
 DOCKER_SWAP=$(APIREST_CAAS_SWAP)
 DOCKER_USER=$(APIREST_CAAS_USER)
@@ -88,6 +89,7 @@ else
 	COMPOSE_PROJECT_HOST=\"$(DOCKER_HOST)\"\r\n\
 	COMPOSE_PROJECT_PORT=$(DOCKER_PORT)\r\n\
 	COMPOSE_PROJECT_PATH=\"$(DOCKER_BIND)\"\r\n\
+	COMPOSE_PROJECT_CPUS=\"$(DOCKER_CPUS)\"\r\n\
 	COMPOSE_PROJECT_MEM=\"$(DOCKER_MEM)\"\r\n\
 	COMPOSE_PROJECT_SWAP=\"$(DOCKER_SWAP)\"\r\n\
 	COMPOSE_PROJECT_USER=\"$(DOCKER_USER)\"\r\n\
@@ -95,9 +97,12 @@ else
 	chmod +x ./docker/config/ownerships.sh
 	./docker/config/ownerships.sh $(DOCKER_USER) $(DOCKER_GROUP)
 	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - $(DOCKER_PLTF) "${C_YEL}"docker-compose.yml"${C_END}" .env file "${C_GRN}"has been set."${C_END};
-	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Container: "${C_GRN}$(DOCKER_CONTAINER)${C_END}
-	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Max. memory usage: "${C_GRN}$(DOCKER_MEM)${C_END}
-	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Is served at: "${C_GRN}http://127.0.0.1:$(DOCKER_PORT)${C_END}
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Container name: "${C_GRN}$(DOCKER_CONTAINER)${C_END}
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Container image: "${C_GRN}$(DOCKER_CONTAINER):$(DOCKER_IMGK)${C_END}
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Max. CPUs: "${C_GRN}$(DOCKER_CPUS)${C_END}
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Max. memory usage: "${C_GRN}$(DOCKER_MEM)${C_END}" - Swap: "${C_GRN}$(DOCKER_SWAP)${C_END}
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Localhost: http://127.0.0.1:"${C_GRN}"$(DOCKER_PORT)"${C_END};
+	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" APIREST - Hostname: http://$(word 1,$(shell hostname -I)):"${C_GRN}"$(DOCKER_PORT)"${C_END};
 endif
 
 # -------------------------------------------------------------------------------------------------
